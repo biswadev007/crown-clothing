@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 const Header = ({ currentUser }) => {
     return (
         <div className="header">
-            <Link to='/' className="logo-container">
+            <Link to='/' className="logo-container"> 
                 <Logo className="logo" />
             </Link>
             <div className="options">
