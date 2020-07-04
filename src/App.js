@@ -12,28 +12,14 @@ import AboutUs from "./components/AboutUs/about.component";
 
 import "./App.css";
 import { selectCurrentUser } from "./redux/user/user.selector";
-import { setCurrentUser } from "./redux/user/user.action";
-
-import { auth, createProfileData } from "./firebase/firebase.utils";
+import { checkUserSession } from "./redux/user/user.action"
 
 class App extends Component {
   unsubscribeFromAuth = null;
+  
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createProfileData(userAuth)
-        userRef.onSnapshot(snapshot => {
-          setCurrentUser({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data()
-            }
-          })
-        });
-      }
-      setCurrentUser(userAuth);
-    })
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   componentWillUnmount() {
@@ -58,10 +44,10 @@ class App extends Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  checkUserSession: () => dispatch(checkUserSession())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
