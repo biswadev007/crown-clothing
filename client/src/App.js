@@ -10,13 +10,13 @@ import SignInAndSignUp from "./pages/SignInAndSignUpPage/SignInAndSignUp.page";
 import CheckoutPage from "./pages/CheckoutPage/checkoutPage.component";
 import AboutUs from "./components/AboutUs/about.component";
 
-import "./App.css";
+import { GlobalStyle } from "./Global.styled";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import { checkUserSession } from "./redux/user/user.action"
 
 class App extends Component {
   unsubscribeFromAuth = null;
-  
+
   componentDidMount() {
     const { checkUserSession } = this.props;
     checkUserSession();
@@ -28,7 +28,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
+        <GlobalStyle />
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />

@@ -20,7 +20,27 @@
       position: absolute;
       top: 255px;
       display: none;
+
+      @media screen and (max-width: 800px){ 
+        display: block;
+        opacity: 0.9;
+        min-width: unset;
+        padding: 0 10px;
+      }
     }
+
+    @media screen and (max-width: 800px){
+      width: 40vw;
+      &:hover {
+        .image{
+          opacity: unset;
+        }
+        .custom-button{
+          opacity: unset;
+        }
+      } 
+    }
+
     &:hover {
       .image{
         opacity: 0.8;
@@ -38,6 +58,11 @@
       justify-content: space-between;
       font-size: 18px;
   
+      @media screen and (max-width: 800px){
+        font-size: 14px;
+        width: 93%;
+      }
+
       .name {
         width: 90%;
         margin-bottom: 15px;
